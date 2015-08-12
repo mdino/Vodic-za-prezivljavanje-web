@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<!--
+        Twenty by HTML5 UP
+        html5up.net | @n33co
+        Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+    <head>
+        <title>Vodič za preživljavanje</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" href="assets/css/jquery.dataTables.css" />
+        <link rel="stylesheet" href="assets/css/jquery.dataTables_themeroller.css" />
+        <script src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.dataTables.js"></script>
+        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    </head>
+    <body class="index">
+        <div id="page-wrapper">
+
+            <!-- Header -->
+            <header id="header" class="alt">
+                <h1 id="logo"><a href="index.php">Vodič <span>za preživljavanje</span></a></h1>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="dokumentacija.php">Dokumentacija</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <br/>
+            <article id="main">
+
+                <!-- Three -->
+                <section class="wrapper style3 container special" >
+
+                    <header class="major">
+
+                        <h1><b>Dokumentacija projekta Vodič za preživljavanje</b></h1>
+
+                        <h2>Kratak opis projekta i uloge:</h2>
+
+                        <p> Projekt pruža korisniku pregled i učenje tehnika preživljavanja u različitim područjima </p>
+
+
+                        <b>Uloge:</b>
+                        <ul align="center"> 
+                            <li>  Neregistrirani korisnik</li>
+                            <li>  Registrirani korisnik</li>
+                            <li>  Moderator</li>
+                            <li>  Administrator</li>
+                        </ul>
+
+                        <b> Administrator:</b>
+
+                        <p align="left">  Definira „područja“ (pustinje, džungla, Arktika, …) i dodjeljuje moderatore za područja.
+                            Vidi statistiku korištenja sustava, pogrešnih/ispravnih prijava, po korisnicima i vremenskom periodu (od - do).
+                            Vidi aplikativnu statistiku koja pokazuje broja članaka po pojedinom području i/ili moderatoru, broj video materijala koje je postavio pojedini moderator i prosječnu ocjenu moderatora (koja je prosjek svih ocjena njegovih članaka).  </p>
+
+                        <b> Moderator: </b>
+
+                        <p align="left">Vidi popis korisnika koji su se pretplatili za njegovo područje i može zabraniti pristup svojim člancima nekom korisniku (npr. kada uoči da korisnik ostavlja neprimjerene komentare). Za područje za koje je zadužen piše članke.
+                            Kreira uz svaki članak dodatne materijale: video (min 2), galerija slika (min 5) i dokument (min 1) u pojedinu kategoriju. Može poslati obavijest svim korisnicima o novom članku koji su pretplaćeni za područje u kojem je članak objavljen.
+                        </p>
+
+                        <b>Registrirani korisnik: </b>
+
+                        <p align="left" >Mora se pretplatiti se na određeno područje da bi vidio članke. Može čitati članke i pregledavati materijale iz pretplaćenih područja. Uz svaki članak je prikazana prosječna ocjena. Može sortirati (po jednom elementu) i filtrirati članke prema ocjeni, datumu kreiranja ili autoru
+                            (moguće jedan, dva ili svi elementi). Može komentirati svaki članak i davati ocjenu. Vidi za odabrani članak komentare ostalih korisnika. </p>
+
+                        <b>Neregistrirani korisnik: </b>
+                        <p align="left" > Vidi popis područja i odabirom područja vidi popis članka sa brojem koliko ima postavljenih videa, slika i dokumenata. </p>
+
+
+                        <h2> Era model: </h2>
+                        <p align="left" > Era model je vrlo bitna stvar u planiranju izrade projekta, prikazuje nam strukturu projekta prema kojemu se zelimo ravnati pri izradi projekta. Moj ERA model se sastoji od 15
+                            tablica. U tablici korisnik nalaze se atributu idkorisnik kao primarni kljuc, tip korisnika koji odreduje da li je tip korisnika moderator, administrator ili registrirani korisnik. U tablici tip_korisnika nalazi se atribut status po kojemu saznajemo da li je korisnik blokiran. Tablica moderator_podrucja sluzi nam kao vanjska zablica sa dva vanjska kljuca po kojem dodjeljujemo obavjesti i pretplate odredenom korisniku. Tablica pretplata sluzi kako bi se registrirani korisnik pretplatio na određeno podrucje te vidio članke. Tablice komentar i ocjene služe kako bi korisnik mogao komentirati i ocjeniti određeni članak na području na kojem je pretplačen.  </p>
+                        <img src="img/ERA.png" style="width:80%"/>
+                        <h2>Navigacijski dijagram: </h2>
+                        <p align="left" > Navigacijski dijagram važan je pri izradi projekta jer nam on prikazuje kako će biti raspoređena prava za različite tipove korisnika u samom sustavu. Na slici možemo vidjeti da su različita prava u četiri tipa korisnika 
+                            (Administrator, Moderator, Registrirani korisnik i Neregistrirani korisnik). </p>
+                        <img src="img/navigacijski.jpg" style="width:80%"/>
+
+                        <h2>Popis i opis skripata</h2>
+                        <p align="left" > U izradi projekta koristili smo Smarty pa su sve skripte vezano uz html spremljene na lokaciji templates kao .tpl datoteke. Tu se nalazi index.tpl, footer.tpl, header.tpl, login.tpl, dokumentacija.tpl, skripte vezane uz administratora za uređivanje područja, dodavanje područja, postavljanje moderatura područjima, skripta vezana uz dnevnik i pomak vremena te grafikoni kod statistike. U folderu ajax nalaze se 3 php skripte admin.php, auth.php i korisnik.php u kojem se većinom nalaze upiti za dohvaćanje različitih podataka iz baze podataka. U mapi assets/js nalaze se javascript i Jquery vezan uz signup, admin.log, admin_podrucja, admin_korisnici itd.. Slike vezane za područja nalaze se u img/područja/[broj id podrucja]. Css koristi responzivni dizajn, preuzet je sa interneta ali su napravljenje mnoge izmjene. On se nalazi u folderu assets/css. </p>
+
+                        <h2>Opis projektnog rješenja, korištene tehnologije i skripte: </h2>
+                        <p align="left" > Za početak želim istaknuti da je izrada mog projekta trajala oko 60-80 sati bez vremena koje je 
+                            utrošeno na proučavanje i traženje rješenja pojedninog problema. Dizajn je riješen pomoću preuzetog gotovog templata koji koristi responzivan dizajn (nije Bootstrap!). Sam sustava tj, svaki prijenosi ili izmjene podataka su napravljeni pomoću ajax-a i XML-a iz
+                            razloga jer nose najviše bodova kod obrane projekta, te je taj dio posebno istaknuti jer je na njega utrošeno najviše
+                            vremena. Također cijeli projekt je implementiran pomoću predložaka Smarty kombiniran sa php te tpl datotekama. Kod same izrade projekta sam se više bazirao na kofiguraciju te rad sustava dok sam malo zanemario 
+                            same funkcionalnosti različitih tipova korisnika, te cilj projekta općenito, tj. uređivanje članaka, čitanje članaka, ocjene i komentari. Bilo je tu i puno problema na koje sam nailazio ponajviše na dijelu
+                            samog XML-a no na kraju je večina onoga što sam zamislio i realizirano tako da sam zadovoljan sa konačnim ishodom. Dosta sam se preračunao oko samog vremena trajanja projekta pa zbog toga nisu realizirani svi dijelovi, koje vijerujem da bi znao do kraja riješiti. </p>
+
+
+                    </header>
+                </section>
+
+            </article>
+
+            <script src="assets/js/jquery.min.js"></script>
+            <script>
+                $('#header').css('background', 'black');
+
+            </script>
+
+            <!-- Footer -->
+            <footer id="footer">
+                <ul class="copyright">
+                    <li>&copy; Dino Musliu</li>
+                    <li><a href="mailto:mdino@foi.hr">Email</a></li>
+                </ul>
+            </footer>
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/jquery.scrollgress.min.js"></script>
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script src="assets/js/main.js"></script>
+
+    </body>
+</html>
